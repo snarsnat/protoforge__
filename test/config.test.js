@@ -43,6 +43,6 @@ describe('config', () => {
     const cfg = await import('../lib/core/config.js');
     cfg.setConfigValue('aiProvider', 'mock');
     cfg.resetConfig();
-    expect(cfg.getConfigValue('aiProvider')).toBe('ollama');
+    expect(cfg.getConfigValue('aiProvider')).toBe('openai');
   });
 });

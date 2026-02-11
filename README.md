@@ -101,7 +101,7 @@ The setup wizard prompts in this order:
 1. **AI provider** (default: Ollama — local & free)
 2. **Ollama URL** (default: http://localhost:11434) and **model** (default: llama3.1)
 3. **Optional cloud AI key** (OpenAI or Groq)
-4. **Optional Meshy API key** (for 3D models)
+4. **3D preview (HTML)** (no Meshy; generated locally as an HTML preview)
 5. Web/output settings
 
 Keys are stored locally via the `conf` module in `~/.protoforge/config.json`.
@@ -151,7 +151,7 @@ protoforge --web
 
 Opens http://localhost:3000 with a split-panel layout:
 - Left: command input + generation log
-- Right tabs: **Scripts** (file browser + editor), **Diagrams** (Mermaid), **3D Models** (Meshy-ready), **BOM**, **Guide**
+- Right tabs: **Scripts** (file browser + editor), **Diagrams** (Mermaid), **3D Preview** (HTML), **BOM**, **Guide**
 - ZIP export
 
 Anti-AI-design enforced: no chat bubbles, no gradients, angular borders, monospace, dense info.
@@ -383,7 +383,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 - [Ink](https://github.com/vadimdemedes/ink) - React for CLI
 - [Mermaid](https://mermaid.js.org) - Diagram generation
 - [OpenAI](https://openai.com) - Cloud AI APIs
-- [Meshy AI](https://meshy.ai) - 3D model generation
+- (3D preview is rendered locally as HTML; no Meshy dependency)
 
 ---
 

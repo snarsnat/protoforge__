@@ -1,11 +1,11 @@
 {
-  "name": "protoforge",
-  "version": "1.0.0",
+  "name": "@happinez/protoforge",
+  "version": "1.0.1",
   "description": "AI-Powered Prototype Builder for Hardware, Software, and Hybrid Projects",
   "type": "module",
   "main": "bin/protoforge.js",
   "bin": {
-    "protoforge": "./bin/protoforge.js"
+    "protoforge": "bin/protoforge.js"
   },
   "files": [
     "bin/",
@@ -40,12 +40,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/protoforge/protoforge.git"
+    "url": "git+https://github.com/snarsnat/protoforge.git"
   },
   "bugs": {
-    "url": "https://github.com/protoforge/protoforge/issues"
+    "url": "https://github.com/snarsnat/protoforge/issues"
   },
-  "homepage": "https://github.com/protoforge/protoforge#readme",
+  "homepage": "https://github.com/snarsnat/protoforge#readme",
   "dependencies": {
     "axios": "^1.13.5",
     "chalk": "^5.6.2",
