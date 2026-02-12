@@ -5,49 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ProtoForge</title>
   <style>
-    /* ANTI-AI-DESIGN: STRICTLY AGAINST COMMON AI TROPES */
-    
-    /* TROPE 1: Rounded chat bubbles → USE SQUARE MESSAGES */
-    /* TROPE 2: Soft gradients → USE FLAT BOLD COLORS */
-    /* TROPE 3: Pill-shaped inputs → USE SQUARE INPUTS */
-    /* TROPE 4: Typing bouncing dots → USE STATIC INDICATORS */
-    /* TROPE 5: Cute avatars → USE INITIALS ONLY */
-    /* TROPE 6: Smooth animations → USE ABRUPT TRANSITIONS */
-    /* TROPE 7: Soft shadows → USE HARD BORDERS */
-    /* TROPE 8: "Copilot/Assistant" branding → USE PLAIN HEADERS */
-    
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ANTI-AI-DESIGN: Bold, square, high contrast */
+    * { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
     
     body {
-      font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+      font-family: 'Courier New', monospace;
       background: #000;
       color: #fff;
       height: 100vh;
       overflow: hidden;
-      /* TROPE: Minimalist whitespace → USE DENSE LAYOUT */
     }
     
     .container {
       display: grid;
-      grid-template-columns: 1fr 320px;
+      grid-template-columns: 1fr 400px;
       height: 100vh;
       border: 3px solid #fff;
     }
     
-    /* NO ROUNDED CORNERS - EVER */
-    * { border-radius: 0 !important; }
-    
-    /* BOLD COLOR THEME - NO GRADIENTS */
-    .chat-section {
-      display: flex;
-      flex-direction: column;
-      border-right: 3px solid #fff;
-    }
-    
+    /* Header */
     .header {
-      padding: 16px 20px;
-      background: #ff0040; /* BOLD RED - AGAINST SKY BLUE AI COLORS */
+      background: #ff0040;
+      padding: 12px 20px;
       border-bottom: 3px solid #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     
     .header h1 {
@@ -56,14 +39,33 @@
       letter-spacing: -1px;
     }
     
-    .header-subtitle {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      opacity: 0.8;
+    .header-actions {
+      display: flex;
+      gap: 10px;
     }
     
-    /* NO CHAT BUBBLES - USE SQUARE LIST LAYOUT */
+    .header-actions select, .header-actions button {
+      padding: 8px 12px;
+      background: #000;
+      border: 2px solid #fff;
+      color: #fff;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    
+    .header-actions button:hover {
+      background: #fff;
+      color: #000;
+    }
+    
+    /* Chat Section */
+    .chat-section {
+      display: flex;
+      flex-direction: column;
+      border-right: 3px solid #fff;
+    }
+    
     .messages {
       flex: 1;
       overflow-y: auto;
@@ -73,38 +75,37 @@
     
     .message {
       display: grid;
-      grid-template-columns: 60px 1fr;
-      border-bottom: 2px solid #333;
+      grid-template-columns: 70px 1fr;
       padding: 16px 20px;
+      border-bottom: 2px solid #333;
       gap: 16px;
     }
     
     .message.user {
-      background: #001a33; /* DARK BLUE - AGAINST LIGHT AI COLORS */
+      background: #001a33;
       border-left: 4px solid #00d4ff;
     }
     
     .message.assistant {
-      background: #1a000d; /* DARK MAROON - AGAINST SOFT GRAY */
+      background: #1a000d;
       border-left: 4px solid #ff0040;
     }
     
     .msg-avatar {
-      width: 48px;
-      height: 48px;
+      width: 56px;
+      height: 56px;
       background: #fff;
       color: #000;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
-      font-size: 18px;
+      font-size: 20px;
     }
     
     .msg-content {
       font-size: 14px;
-      line-height: 1.5;
-      font-family: 'Courier New', monospace;
+      line-height: 1.6;
     }
     
     .msg-content strong {
@@ -112,35 +113,34 @@
     }
     
     .msg-content ul {
-      margin: 12px 0;
-      padding-left: 20px;
+      margin: 12px 0 0 20px;
     }
     
     .msg-content li {
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     
-    /* NO SOFT INPUTS - USE HARSH SQUARE INPUT */
+    /* Input Area */
     .input-section {
-      padding: 16px;
       background: #222;
       border-top: 3px solid #fff;
+      padding: 16px;
     }
     
     .input-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
+      display: flex;
       gap: 12px;
     }
     
     .main-input {
-      width: 100%;
+      flex: 1;
       padding: 16px;
       background: #000;
       border: 2px solid #555;
       color: #fff;
+      font-family: inherit;
       font-size: 14px;
-      font-family: 'Courier New', monospace;
+      resize: none;
     }
     
     .main-input:focus {
@@ -150,13 +150,12 @@
     
     .send-btn {
       padding: 16px 24px;
-      background: #00ff00; /* BOLD GREEN - AGAINST SOFT BLUE */
+      background: #00ff00;
       border: 2px solid #00ff00;
       color: #000;
       font-weight: 900;
       font-size: 14px;
       cursor: pointer;
-      text-transform: uppercase;
     }
     
     .send-btn:hover {
@@ -166,7 +165,7 @@
     
     .options {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 8px;
       margin-top: 12px;
     }
@@ -176,25 +175,25 @@
       background: #000;
       border: 2px solid #555;
       color: #fff;
-      font-size: 12px;
+      font-family: inherit;
       cursor: pointer;
     }
     
-    /* RIGHT PANEL - HIGH CONTRAST */
+    /* Output Panel */
     .output-panel {
-      background: #000;
       display: flex;
       flex-direction: column;
+      background: #0a0a0a;
     }
     
-    .output-tabs {
+    .tabs {
       display: flex;
       border-bottom: 3px solid #fff;
     }
     
-    .output-tab {
+    .tab {
       flex: 1;
-      padding: 14px 8px;
+      padding: 14px;
       background: #333;
       border: none;
       color: #888;
@@ -204,43 +203,42 @@
       text-transform: uppercase;
     }
     
-    .output-tab:hover {
+    .tab:hover {
       background: #444;
       color: #fff;
     }
     
-    .output-tab.active {
+    .tab.active {
       background: #ff0040;
       color: #fff;
     }
     
-    .output-content {
+    .tab-content {
       flex: 1;
       overflow-y: auto;
       padding: 0;
     }
     
-    .tab-panel {
+    .panel {
       display: none;
     }
     
-    .tab-panel.active {
+    .panel.active {
       display: block;
     }
     
-    /* FILE LIST - NO CARDS, USE LIST */
+    /* File Tree */
     .file-item {
       display: flex;
       align-items: center;
       padding: 12px 16px;
       border-bottom: 1px solid #333;
       cursor: pointer;
-      font-family: 'Courier New', monospace;
       font-size: 13px;
     }
     
     .file-item:hover {
-      background: #111;
+      background: #1a1a1a;
     }
     
     .file-item.selected {
@@ -248,20 +246,101 @@
       color: #fff;
     }
     
-    .file-icon {
-      width: 24px;
-      margin-right: 12px;
+    .file-item.folder {
+      font-weight: 700;
+      color: #ffcc00;
+    }
+    
+    /* BOM Panel */
+    .bom-header {
+      padding: 16px;
+      background: #1a1a1a;
+      border-bottom: 2px solid #333;
+    }
+    
+    .bom-totals {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      font-size: 11px;
+    }
+    
+    .bom-total {
+      background: #222;
+      padding: 10px;
       text-align: center;
     }
     
-    /* CODE VIEW - HIGH CONTRAST */
+    .bom-total-value {
+      font-size: 18px;
+      font-weight: 900;
+      color: #00ff00;
+    }
+    
+    .bom-total-label {
+      color: #888;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+    
+    .bom-item {
+      padding: 12px 16px;
+      border-bottom: 1px solid #333;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+    }
+    
+    .bom-item-name {
+      font-weight: 700;
+      font-size: 13px;
+    }
+    
+    .bom-item-details {
+      font-size: 11px;
+      color: #888;
+    }
+    
+    .bom-item-qty {
+      background: #333;
+      padding: 4px 10px;
+      font-weight: 700;
+      font-size: 12px;
+      align-self: flex-start;
+    }
+    
+    .bom-item-price {
+      color: #00ff00;
+      font-size: 12px;
+    }
+    
+    /* Schematic Viewer */
+    .schematic-container {
+      padding: 16px;
+    }
+    
+    .schematic-placeholder {
+      border: 2px dashed #444;
+      padding: 60px;
+      text-align: center;
+      color: #666;
+    }
+    
+    .schematic-placeholder svg {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 16px;
+      fill: #444;
+    }
+    
+    /* Code Viewer */
     .code-section {
       padding: 16px;
       border-bottom: 2px solid #333;
     }
     
     .code-filename {
-      font-size: 11px;
+      font-size: 12px;
       color: #ff0040;
       text-transform: uppercase;
       margin-bottom: 8px;
@@ -272,14 +351,13 @@
       background: #0a0a0a;
       border: 1px solid #333;
       padding: 12px;
-      font-family: 'Courier New', monospace;
       font-size: 11px;
       white-space: pre-wrap;
-      max-height: 120px;
+      max-height: 200px;
       overflow-y: auto;
     }
     
-    /* STATUS BAR - NO SOFT TEXT */
+    /* Status Bar */
     .status-bar {
       padding: 12px 16px;
       background: #222;
@@ -291,40 +369,7 @@
       text-transform: uppercase;
     }
     
-    /* NO WELCOME SCREEN - JUST HEADER */
-    
-    /* PROGRESS - SQUARE BAR */
-    .progress-container {
-      padding: 12px 16px;
-      background: #111;
-      border-top: 2px solid #333;
-      display: none;
-    }
-    
-    .progress-container.active {
-      display: block;
-    }
-    
-    .progress-bar {
-      height: 12px;
-      background: #333;
-      border: 1px solid #555;
-    }
-    
-    .progress-fill {
-      height: 100%;
-      background: #ff0040;
-      transition: none; /* NO SMOOTH ANIMATION */
-    }
-    
-    .progress-text {
-      font-size: 10px;
-      margin-top: 6px;
-      color: #888;
-      text-transform: uppercase;
-    }
-    
-    /* SUGGESTIONS - SQUARE CHIPS */
+    /* Suggestions */
     .suggestions {
       padding: 16px;
       border-bottom: 2px solid #333;
@@ -339,7 +384,7 @@
     
     .chip {
       display: inline-block;
-      padding: 8px 12px;
+      padding: 8px 14px;
       background: #222;
       border: 1px solid #444;
       margin: 0 8px 8px 0;
@@ -353,18 +398,7 @@
       color: #fff;
     }
     
-    /* NO TYPING ANIMATION - USE STATIC TEXT */
-    .typing-indicator {
-      padding: 16px 20px;
-      background: #1a000d;
-      border-left: 4px solid #ff0040;
-      font-size: 12px;
-      color: #ff0040;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-    
-    /* SCROLLBARS - SQUARE */
+    /* Scrollbar */
     ::-webkit-scrollbar {
       width: 10px;
       background: #111;
@@ -378,28 +412,69 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #ff0040;
     }
+    
+    /* Progress */
+    .progress {
+      padding: 12px 16px;
+      background: #111;
+      border-top: 2px solid #333;
+      display: none;
+    }
+    
+    .progress.active {
+      display: block;
+    }
+    
+    .progress-bar {
+      height: 8px;
+      background: #333;
+      border: 1px solid #555;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: #ff0040;
+    }
+    
+    .progress-text {
+      font-size: 10px;
+      color: #888;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- CHAT SECTION -->
+    <!-- Chat Section -->
     <div class="chat-section">
       <div class="header">
         <h1>PROTOFORGE</h1>
-        <div class="header-subtitle">AI Prototype Builder</div>
+        <div class="header-actions">
+          <select id="provider">
+            <option value="ollama">OLLAMA</option>
+            <option value="openai">OPENAI</option>
+            <option value="groq">GROQ</option>
+            <option value="anthropic">CLAUDE</option>
+          </select>
+          <button onclick="exportBOM()">EXPORT BOM</button>
+          <button onclick="downloadZip()">EXPORT ZIP</button>
+        </div>
       </div>
       
       <div class="messages" id="messages">
         <div class="suggestions" id="suggestions">
-          <div class="suggestions-label">Try describing a project</div>
+          <div class="suggestions-label">Quick prototypes</div>
           <div class="chip" onclick="setPrompt('Smart plant monitor with moisture sensor')">🌱 Plant monitor</div>
           <div class="chip" onclick="setPrompt('ESP32 weather station with display')">🌤️ ESP32 weather</div>
           <div class="chip" onclick="setPrompt('IoT dashboard for sensors')">📊 IoT dashboard</div>
           <div class="chip" onclick="setPrompt('Bluetooth LE sensor logger')">📡 BLE logger</div>
+          <div class="chip" onclick="setPrompt('Battery powered GPS tracker')">📍 GPS tracker</div>
+          <div class="chip" onclick="setPrompt('Smart doorbell with camera')">🔔 Doorbell</div>
         </div>
       </div>
       
-      <div class="progress-container" id="progress">
+      <div class="progress" id="progress">
         <div class="progress-bar">
           <div class="progress-fill" id="progressFill"></div>
         </div>
@@ -408,7 +483,7 @@
       
       <div class="input-section">
         <div class="input-row">
-          <textarea class="main-input" id="input" rows="2" placeholder="Describe your prototype..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();generate();}"></textarea>
+          <textarea class="main-input" id="input" rows="2" placeholder="Describe your hardware project..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();generate();}"></textarea>
           <button class="send-btn" id="sendBtn" onclick="generate()">GENERATE</button>
         </div>
         <div class="options">
@@ -417,59 +492,86 @@
             <option value="hardware">HARDWARE</option>
             <option value="software">SOFTWARE</option>
           </select>
-          <select id="provider">
-            <option value="ollama">OLLAMA</option>
-            <option value="openai">OPENAI</option>
-            <option value="groq">GROQ</option>
-            <option value="anthropic">CLAUDE</option>
+          <select id="framework">
+            <option value="arduino">ARDUINO</option>
+            <option value="esp32">ESP32</option>
+            <option value="raspberry-pi">RASPBERRY PI</option>
+            <option value="stm32">STM32</option>
+          </select>
+          <select id="connectivity">
+            <option value="none">NO CONNECTIVITY</option>
+            <option value="wifi">WIFI</option>
+            <option value="bluetooth">BLUETOOTH</option>
+            <option value="lora">LORa</option>
           </select>
         </div>
       </div>
     </div>
     
-    <!-- OUTPUT PANEL -->
+    <!-- Output Panel -->
     <div class="output-panel">
-      <div class="output-tabs">
-        <div class="output-tab active" onclick="switchTab('files')">FILES</div>
-        <div class="output-tab" onclick="switchTab('code')">CODE</div>
-        <div class="output-tab" onclick="switchTab('bom')">BOM</div>
-        <div class="output-tab" onclick="switchTab('guide')">GUIDE</div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchTab('files')">FILES</div>
+        <div class="tab" onclick="switchTab('bom')">BOM</div>
+        <div class="tab" onclick="switchTab('schematic')">SCHEMATIC</div>
+        <div class="tab" onclick="switchTab('code')">CODE</div>
+        <div class="tab" onclick="switchTab('guide')">GUIDE</div>
       </div>
       
-      <div class="output-content">
-        <div class="tab-panel active" id="panel-files">
+      <div class="tab-content">
+        <!-- Files Panel -->
+        <div class="panel active" id="panel-files">
           <div id="files">
-            <div style="padding: 20px; color: #555; font-size: 12px; text-transform: uppercase;">
-              No project loaded
+            <div style="padding: 40px; color: #555; text-align: center; font-size: 12px;">
+              NO PROJECT LOADED<br><br>
+              Describe a hardware project to generate files
             </div>
           </div>
         </div>
         
-        <div class="tab-panel" id="panel-code">
-          <div id="code">
-            <div style="padding: 20px; color: #555; font-size: 12px; text-transform: uppercase;">
-              Select a file to view
-            </div>
-          </div>
-        </div>
-        
-        <div class="tab-panel" id="panel-bom">
+        <!-- BOM Panel -->
+        <div class="panel" id="panel-bom">
           <div id="bom">
-            <div style="padding: 20px; color: #555; font-size: 12px; text-transform: uppercase;">
-              Bill of Materials
+            <div style="padding: 40px; color: #555; text-align: center; font-size: 12px;">
+              BILL OF MATERIALS<br><br>
+              Generated BOM will appear here
             </div>
           </div>
         </div>
         
-        <div class="tab-panel" id="panel-guide">
+        <!-- Schematic Panel -->
+        <div class="panel" id="panel-schematic">
+          <div class="schematic-container">
+            <div class="schematic-placeholder">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4V4m2 2v12h12V6H6m2 4h8v2H8v-2m0 4h8v2H8v-2z"/></svg>
+              <div>No schematic generated</div>
+              <div style="font-size: 11px; margin-top: 8px;">Schematic will be generated as SVG/PNG</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Code Panel -->
+        <div class="panel" id="panel-code">
+          <div id="code">
+            <div style="padding: 40px; color: #555; text-align: center; font-size: 12px;">
+              CODE PREVIEW<br><br>
+              Select a file to preview
+            </div>
+          </div>
+        </div>
+        
+        <!-- Guide Panel -->
+        <div class="panel" id="panel-guide">
           <div id="guide">
-            <div style="padding: 20px; color: #555; font-size: 12px; text-transform: uppercase;">
-              Build guide
+            <div style="padding: 40px; color: #555; text-align: center; font-size: 12px;">
+              BUILD GUIDE<br><br>
+              Step-by-step guide will appear here
             </div>
           </div>
         </div>
       </div>
       
+      <!-- Status Bar -->
       <div class="status-bar">
         <span id="statusProvider">PROVIDER: OLLAMA</span>
         <span id="statusState">READY</span>
@@ -517,15 +619,6 @@
       document.getElementById('sendBtn').disabled = true;
       addMessage('user', desc);
       
-      // NO ANIMATED TYPING - STATIC INDICATOR
-      const typing = document.createElement('div');
-      typing.id = 'typing';
-      typing.className = 'typing-indicator';
-      typing.textContent = '[ AI PROCESSING... ]';
-      document.getElementById('messages').appendChild(typing);
-      document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
-      
-      // Show progress
       const prog = document.getElementById('progress');
       prog.classList.add('active');
       document.getElementById('progressFill').style.width = '30%';
@@ -546,20 +639,21 @@
         document.getElementById('progressText').textContent = 'WRITING FILES...';
         
         const data = await res.json();
-        document.getElementById('typing').remove();
         
         if (data.success) {
           projectPath = data.outputPath;
           prototype = data.prototype;
           addMessage('assistant', formatResponse(data.prototype));
           await loadFiles();
+          await renderBOM(data.prototype);
+          renderSchematic(data.prototype);
+          renderGuide(data.prototype);
           document.getElementById('progressFill').style.width = '100%';
           document.getElementById('progressText').textContent = 'COMPLETE';
         } else {
           throw new Error(data.error || 'Generation failed');
         }
       } catch (e) {
-        document.getElementById('typing').remove();
         addMessage('assistant', 'ERROR: ' + e.message);
       }
       
@@ -574,9 +668,10 @@
     }
     
     function formatResponse(p) {
-      let html = '<strong>' + (p.overview?.projectName || 'UNTITLED') + '</strong><br><br>';
+      let html = '<strong>' + (p.overview?.projectName || 'UNTITLED PROJECT') + '</strong><br><br>';
       html += p.overview?.description || '';
-      html += '<br><br><strong>TYPE: ' + (p.type || 'HYBRID').toUpperCase() + '</strong>';
+      html += '<br><br><strong>TYPE:</strong> ' + (p.type || 'HYBRID').toUpperCase();
+      html += '<br><br><strong>FRAMEWORK:</strong> ' + (p.framework || 'Arduino').toUpperCase();
       html += '<br><br><strong>FILES:</strong><ul>';
       (p.codeSnippets || []).forEach(f => {
         html += '<li>' + f.filename + '</li>';
@@ -594,14 +689,14 @@
       for (const e of (data.entries || [])) {
         if (e.type === 'dir') {
           html += '<div class="file-item folder" onclick="toggleDir(\'' + esc(e.name) + '\')">';
-          html += '<span class="file-icon">[DIR]</span><span>' + esc(e.name) + '</span></div>';
+          html += '[DIR] ' + esc(e.name) + '</div>';
           html += '<div id="dir-' + esc(e.name) + '" style="display:none;padding-left:32px;"></div>';
         } else {
           html += '<div class="file-item" onclick="openFile(\'' + esc(e.name) + '\')">';
-          html += '<span class="file-icon">[FILE]</span><span>' + esc(e.name) + '</span></div>';
+          html += '[FILE] ' + esc(e.name) + '</div>';
         }
       }
-      document.getElementById('files').innerHTML = html || '<div style="padding:20px;color:#555;">NO FILES</div>';
+      document.getElementById('files').innerHTML = html || '<div style="padding:40px;color:#555;">NO FILES</div>';
     }
     
     async function openFile(name) {
@@ -617,11 +712,116 @@
         '<div class="code-block">' + esc(d.content?.slice(0, 3000) || '') + '</div></div>';
     }
     
+    async function toggleDir(relDir) {
+      const el = document.getElementById('dir-' + relDir);
+      if (!el) return;
+      
+      if (el.style.display !== 'none') {
+        el.style.display = 'none';
+        return;
+      }
+      
+      const name = projectPath.split('/').pop();
+      const r = await fetch('/api/project/' + name + '/tree?dir=' + encodeURIComponent(relDir));
+      const data = await r.json();
+      
+      let html = '';
+      for (const e of (data.entries || [])) {
+        const relPath = relDir + '/' + e.name;
+        if (e.type === 'dir') {
+          html += '<div class="file-item folder" onclick="toggleDir(\'' + esc(relPath) + '\')">';
+          html += '[DIR] ' + esc(e.name) + '</div>';
+          html += '<div id="dir-' + esc(relPath) + '" style="display:none;padding-left:32px;"></div>';
+        } else {
+          html += '<div class="file-item" onclick="openFile(\'' + esc(relPath) + '\')">';
+          html += '[FILE] ' + esc(e.name) + '</div>';
+        }
+      }
+      el.innerHTML = html;
+      el.style.display = 'block';
+    }
+    
+    async function renderBOM(p) {
+      // Generate BOM from prototype data
+      const bom = p.bom || [];
+      
+      let totals = { items: bom.length, qty: 0, cost: 0 };
+      bom.forEach(item => {
+        totals.qty += item.quantity || 1;
+        totals.cost += (item.unitPrice || 0) * (item.quantity || 1);
+      });
+      
+      let html = '<div class="bom-header"><div class="bom-totals">' +
+        '<div class="bom-total"><div class="bom-total-value">' + totals.items + '</div><div class="bom-total-label">Items</div></div>' +
+        '<div class="bom-total"><div class="bom-total-value">' + totals.qty + '</div><div class="bom-total-label">Quantity</div></div>' +
+        '<div class="bom-total"><div class="bom-total-value">$' + totals.cost.toFixed(2) + '</div><div class="bom-total-label">Est. Cost</div></div>' +
+        '</div></div>';
+      
+      bom.forEach(item => {
+        html += '<div class="bom-item">' +
+          '<div><div class="bom-item-name">' + esc(item.partNumber || item.id) + '</div>' +
+          '<div class="bom-item-details">' + esc(item.description || item.category || '') + '</div></div>' +
+          '<div><div class="bom-item-qty">x' + (item.quantity || 1) + '</div>' +
+          '<div class="bom-item-price">$' + ((item.unitPrice || 0) * (item.quantity || 1)).toFixed(2) + '</div></div></div>';
+      });
+      
+      document.getElementById('bom').innerHTML = html || '<div style="padding:40px;color:#555;">NO BOM</div>';
+    }
+    
+    function renderSchematic(p) {
+      const s = p.schematic;
+      const mermaidText = typeof s === 'string' ? s : (s?.mermaid || s?.diagram || '');
+      
+      if (mermaidText) {
+        document.getElementById('panel-schematic').innerHTML = '<div class="schematic-container"><div class="mermaid">' + mermaidText + '</div></div>';
+        mermaid.run({ querySelector: '#panel-schematic .mermaid' });
+      }
+    }
+    
+    function renderGuide(p) {
+      if (p.buildGuide) {
+        document.getElementById('guide').innerHTML = '<div style="padding:16px;white-space:pre-wrap;font-size:12px;line-height:1.6;">' + esc(p.buildGuide) + '</div>';
+      }
+    }
+    
     function switchTab(tab) {
-      document.querySelectorAll('.output-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
       event.target.classList.add('active');
       document.getElementById('panel-' + tab).classList.add('active');
+    }
+    
+    function exportBOM() {
+      if (prototype?.bom) {
+        const csv = 'Part Number,Description,Category,Quantity,Unit Price,Total,Supplier\n' +
+          prototype.bom.map(item => 
+            item.partNumber + ',' + 
+            item.description + ',' + 
+            item.category + ',' + 
+            (item.quantity || 1) + ',' + 
+            (item.unitPrice || 0) + ',' + 
+            ((item.unitPrice || 0) * (item.quantity || 1)) + ',' + 
+            item.supplier
+          ).join('\n');
+        
+        const blob = new Blob([csv], {type: 'text/csv'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'bom.csv';
+        a.click();
+      } else {
+        alert('No BOM to export');
+      }
+    }
+    
+    function downloadZip() {
+      if (projectPath) {
+        const name = projectPath.split('/').pop();
+        window.location.href = '/api/project/' + name + '/download';
+      } else {
+        alert('No project to export');
+      }
     }
   </script>
 </body>
