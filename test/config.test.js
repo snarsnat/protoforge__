@@ -30,10 +30,25 @@ describe('config', () => {
     expect(ai.provider).toBe('mock');
   }, 30000);
 
-  test('apiKeyEnv resolves from environment', async () => {
+  test('apiKey resolves from provider env var (and ~/.protoforge/.env)', async () => {
+    const envDir = path.join(tmpHome, '.protoforge');
+    await fs.promises.mkdir(envDir, { recursive: true });
+    await fs.promises.writeFile(path.join(envDir, '.env'), 'OPENAI_API_KEY=fromfile\n', 'utf-8');
+
+    vi.resetModules();
+    const cfg = await import('../lib/core/config.js');
+    cfg.setAIConfig({ provider: 'openai', model: 'gpt-4o-mini', apiKeyEnv: '', apiKey: '' });
+
+    const ai = cfg.getAIConfig();
+    expect(ai.provider).toBe('openai');
+    expect(ai.apiKey).toBe('fromfile');
+  });
+
+  test('apiKeyEnv resolves from environment when provider env var is missing', async () => {
+    delete process.env.OPENAI_API_KEY;
     process.env.TEST_PROTOFORGE_KEY = 'shhh';
     const cfg = await import('../lib/core/config.js');
-    cfg.setAIConfig({ provider: 'openai', model: 'gpt-4o-mini', apiKeyEnv: 'TEST_PROTOFORGE_KEY' });
+    cfg.setAIConfig({ provider: 'openai', model: 'gpt-4o-mini', apiKeyEnv: 'TEST_PROTOFORGE_KEY', apiKey: '' });
     const ai = cfg.getAIConfig();
     expect(ai.provider).toBe('openai');
     expect(ai.apiKey).toBe('shhh');

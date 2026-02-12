@@ -48,9 +48,11 @@ Run:
 protoforge setup
 ```
 
-Setup flow (current):
+Setup flow:
 1. Choose an AI provider (OpenAI / Groq / Anthropic / Gemini / DeepSeek)
-2. Enter your **API key** (stored locally via `conf` in `~/.protoforge/config.json`)
+2. Provide your API key
+   - Recommended: save to `~/.protoforge/.env` as a provider env var (e.g. `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `DEEPSEEK_API_KEY`)
+   - Fallback: store in `~/.protoforge/config.json`
 3. Choose the model name
 4. Choose output dir + web port
 

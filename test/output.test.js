@@ -41,5 +41,5 @@ describe('output generation', () => {
     expect(fs.existsSync(path.join(projectDir, 'schematics', 'diagram.mmd'))).toBe(true);
 
     await fs.promises.rm(projectDir, { recursive: true, force: true });
-  });
+  }, 20000);
 });

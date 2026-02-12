@@ -13,6 +13,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs-extra';
 import chalk from 'chalk';
+import { loadUserEnv } from '../lib/core/env.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const packageJson = JSON.parse(
@@ -53,6 +54,9 @@ async function startTUI() {
 }
 
 async function main() {
+  // Load ~/.protoforge/.env so provider API keys work in CLI/TUI/Web.
+  loadUserEnv();
+
   const program = new Command();
 
   program
